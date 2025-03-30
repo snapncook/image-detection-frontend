@@ -1,0 +1,23 @@
+<svg width="1024" height="808" viewBox="0 0 1024 808" fill="none" xmlns="http://www.w3.org/2000/svg">
+<mask id="path-1-outside-1_78_6" maskUnits="userSpaceOnUse" x="-19" y="0" width="1064" height="808" fill="black">
+<rect fill="white" x="-19" width="1064" height="808"/>
+<path d="M1 20H1025V788H161C85.5753 788 47.8629 788 24.4315 764.569C1 741.137 1 703.425 1 628V20Z"/>
+</mask>
+<path d="M1 20H1025V788H161C85.5753 788 47.8629 788 24.4315 764.569C1 741.137 1 703.425 1 628V20Z" fill="url(#paint0_radial_78_6)" fill-opacity="0.8"/>
+<path d="M1 20H1025V788H161C85.5753 788 47.8629 788 24.4315 764.569C1 741.137 1 703.425 1 628V20Z" stroke="url(#paint1_linear_78_6)" stroke-opacity="0.5" stroke-width="40" mask="url(#path-1-outside-1_78_6)"/>
+<path d="M1 20H1025V788H161C85.5753 788 47.8629 788 24.4315 764.569C1 741.137 1 703.425 1 628V20Z" stroke="url(#paint2_linear_78_6)" stroke-opacity="0.8" stroke-width="40" mask="url(#path-1-outside-1_78_6)"/>
+<defs>
+<radialGradient id="paint0_radial_78_6" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(513 404) rotate(90) scale(384 512)">
+<stop stop-color="#AC3F3F"/>
+<stop offset="1" stop-color="#D9D9D9"/>
+</radialGradient>
+<linearGradient id="paint1_linear_78_6" x1="69.2667" y1="800.8" x2="939.246" y2="358.906" gradientUnits="userSpaceOnUse">
+<stop stop-color="#FDF6F6"/>
+<stop offset="1" stop-color="#C32B2B"/>
+</linearGradient>
+<linearGradient id="paint2_linear_78_6" x1="1025" y1="534.133" x2="87.4217" y2="992.505" gradientUnits="userSpaceOnUse">
+<stop stop-color="#3FBD23" stop-opacity="0"/>
+<stop offset="1" stop-color="#FFFEFD"/>
+</linearGradient>
+</defs>
+</svg>
