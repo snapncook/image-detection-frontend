@@ -18,7 +18,8 @@ const config: Config = {
         background: "var(--background)",
         foreground: "var(--foreground)",
         brown_pink: '#AD8D73',
-        light_pink: '#E2CDC8'
+        light_pink: '#E2CDC8',
+        dirty_green: '#A8AE9D'
       },
     },
   },
