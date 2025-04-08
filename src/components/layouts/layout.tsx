@@ -12,6 +12,13 @@ const caveatRegular = localFont({
   weight: "400",
 });
 
+const ShantellSansRegular = localFont({
+  src: "../../../public/fonts/ShantellSans-Regular.ttf",
+  variable: "--font-shantell-sans-regular",
+  weight: "400",
+});
+
+
 
 export default function RootLayout({
   children,
@@ -19,7 +26,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <div className={`${rubikMonoOne.variable} ${caveatRegular.variable} antialiased`}>
+    <div className={`${rubikMonoOne.variable} ${ShantellSansRegular.variable} ${caveatRegular.variable} antialiased`}>
       {children}
     </div>
   );

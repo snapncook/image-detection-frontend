@@ -27,6 +27,9 @@ body {
   .font-caveat-regular {
     font-family: var(--font-caveat-regular), Arial, sans-serif;
   }
+  .font-shantell-sans-regular {
+    font-family: var(--font-shantell-sans-regular), Arial, sans-serif;
+  }
   .text-balance {
     text-wrap: balance;
   }
