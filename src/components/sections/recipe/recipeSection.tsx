@@ -70,11 +70,10 @@ const RecipeSection = () => {
                                                 width="40"
                                                 height="40"
                                                 alt='Upload icon'
-                                                className='w-1/4'
+                                                className='w-1/2'
                                             />
                                         )}
                                     </div>
-
                                     <input
                                         type="file"
                                         accept="image/*"
@@ -83,12 +82,20 @@ const RecipeSection = () => {
                                         className="hidden"
                                     />
                                     <div className='flex-col w-1/2'>
-                                        <p className='text-dark_beige font-shantell-sans-regular text-[8px]'>Загрузите фотографию ваших продуктов</p>
+                                        <p className='text-dark_beige font-shantell-sans-regular text-[8px] tablet:text-[10px] laptop:text-[12px]'>Загрузи фотографию продуктов, нажми на кнопку "Подобрать" и мы подберем рецепты по оимеющимся продуктам</p>
                                         <Button title="Подобрать" onClick={handleGenButtonClick} buttonStyle="inline-block px-4 py-1 bg-dark_green text-white font-rubik-mono-one rounded-full" textStyle="text-white text-[8px]" />
                                     </div>
                                 </div>
-                                <div className='m-2 aspect-[10] bg-light_beige rounded-xl w-full flex items-center justify-center'>
-
+                                <div className='p-4 w-full box-border'>
+                                    <div className='rounded-xl bg-light_beige aspect-[10] flex items-center h-full'>
+                                        <div className='flex justify-start flex-row overflow-x-scroll text-dark_green space-x-2 p-4 text-[8px] tablet:text-[10px] laptop:text-[12px] scrollbar-none'>
+                                            <div className='flex flex-row items-center'>
+                                                <p>Банан</p>
+                                                <Button title={<Image src="/remove.svg" width="10" height="10" alt='' />} onClick={() => { }} buttonStyle="px-2 py-1 min-w-10" textStyle="" />
+                                            </div>
+                                            <Button title={<Image src="/add.svg" width="10" height="10" alt='' />} onClick={() => { }} buttonStyle="px-2 py-1 min-w-10" textStyle="" />
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>

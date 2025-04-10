@@ -1,8 +1,7 @@
-import { FC } from "react";
-import { attribute } from "three/tsl";
+import React, { FC } from "react";
 
 type ButtonProps = {
-    title: string;
+    title: string | React.ReactNode;
     id?: string;
     onClick?: () => void;
     buttonStyle: string;

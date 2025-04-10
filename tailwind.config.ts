@@ -19,7 +19,6 @@ const config: Config = {
         foreground: "var(--foreground)",
         brown_pink: '#AD8D73',
         light_pink: '#E2CDC8',
-        dirty_green: '#A8AE9D',
         dark_red: '#C03E3E',
         pink: '#E19595',
         dark_green: "#898B67",
