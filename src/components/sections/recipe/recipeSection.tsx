@@ -3,12 +3,17 @@ import Recipe from './recipe';
 import Button from '@/components/base/Button';
 import { useRef, useState } from 'react';
 
+import { RecipeSectionType, RecipeType } from './types'
 
 
-const RecipeSection = () => {
+
+
+const RecipeSection: React.FC<RecipeSectionType> = ({ initialObjects = [], inititalRecipes = [] }) => {
     const fileInputRef = useRef<HTMLInputElement | null>(null);
     const [selectedFile, setSelectedFile] = useState<File | null>(null);
     const [previewUrl, setPreviewUrl] = useState<string | null>(null);
+    const [objects, setObjects] = useState<string[]>(initialObjects);
+    const [recipes, setRecipes] = useState<RecipeType[]>(inititalRecipes);
 
     const handleButtonClick = () => {
         if (fileInputRef.current) {
@@ -16,23 +21,64 @@ const RecipeSection = () => {
         }
     };
 
-    const handleGenButtonClick = () => {
-        if (!previewUrl) {
-            alert("Пожалуйста, загрузите изображение.");
-        } else {
-            console.log("Ок");
+    const fetchRecipe = async (ingredients: string[]) => {
+        try {
+            const response = await fetch('http://localhost:8080/recipes/suggest', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ ingredients }),
+            });
+            if (!response.ok) {
+                throw new Error(`Error fetching recipe: ${response.status}`);
+            }
+            const recipes = await response.json();
+            setRecipes(recipes);
+        } catch (error) {
+            console.error("Error fetching recipe:", error);
         }
-    }
+    };
+
+    const handleGenButtonClick = () => {
+        if (!selectedFile) {
+            alert("Пожалуйста, загрузите изображение.");
+            return;
+        }
+
+        const formData = new FormData();
+        formData.append("image", selectedFile);
+
+        fetch("http://localhost:8080/detect", {
+            method: "POST",
+            body: formData
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then(data => {
+                const detectedObjects = data.objects;
+                setObjects(detectedObjects || []);
+                setPreviewUrl(data.annotated_image);
+                fetchRecipe(detectedObjects || []);
+            })
+            .catch(error => {
+                console.error("Error during fetching:", error);
+            });
+    };
 
     const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const file = event.target.files?.[0];
         if (file) {
             setSelectedFile(file);
-
             const url = URL.createObjectURL(file);
             setPreviewUrl(url);
         }
     };
+
     return (
         <div className="relative" id="recipe">
             <div className="bg-[url('/background-recipe.svg')] tablet:bg-[url('/background-recipe.svg')] bg-cover bg-no-repeat w-full min-h-[100vh] mt-[-20vh] relative"
@@ -42,15 +88,11 @@ const RecipeSection = () => {
                         <p className="text-white font-rubik-mono-one text-[12px] tablet:text-[16px] laptop:text-[24px]">Рецепты</p>
                         <p className='text-light text-[10px] tablet:text-[12px] laptop:text-[14px]'>Выберите любой понравившийся рецепт</p>
                         <div className='flex flex-col gap-4 overflow-y-scroll max-h-[60vh] scrollbar-none relative text-white mt-2'>
-                            <Recipe title={'Борщ'} description={'Борщ с домашней булочкой, очень вкусно'} recipeText={`Подготовить продукты. Говядину нарезать крупными кусками. Залить мясо в кастрюле холодной водой, довести до кипения, снять пену. 
-                            Варить бульон примерно 1,5 часа на небольшом огне. В конце варки посолить. Свёклу очистить, нарезать соломкой. Морковь очистить, натереть на крупной терке.
-                            Лук очистить, мелко нарезать. Капусту нашинковать. Картофель очистить, нарезать кубиками.
-                            На сковороде разогреть растительное масло. Свёклу, морковь и лук выложить на сковороду и тушить на среднем огне (пассеровать), помешивая, 5-7 минут.
-                            В конце добавить уксус и томатную пасту. Перемешать. Готовить овощи ещё 3-4 минуты, помешивая.
-                            В кипящий бульон выложить картофель и капусту, варить 10 минут. (Молодую капусту добавлять за 5 минут до окончания приготовления борща.)
-                            Затем добавить пассерованные овощи, лавровый лист и перец. Варить борщ с говядиной еще 5-7 минут.
-                            Готовому борщу дать настояться 10-15 минут. Зелень нарезать.
-                            Разлить борщ по тарелкам, заправить сметаной и посыпать зеленью.`} />
+                            {recipes.length > 0 ? (
+                                recipes.map((recipe, index) => (
+                                    <Recipe title={recipe.title} ingredients={recipe.ingredients} steps={recipe.steps} key={index}/>
+                                ))) : <p className='text-white text-[6px] tablet:text-[8px] laptop:text-[10px]'>Список рецептов пуст</p>}
+
                         </div>
                     </div>
                     <div className='w-full order-1 tablet:order-2 laptop:order-2 desktop:order-2 relative tablet:w-1/2 laptop:w-1/2'>
@@ -89,11 +131,20 @@ const RecipeSection = () => {
                                 <div className='p-4 w-full box-border'>
                                     <div className='rounded-xl bg-light_beige aspect-[10] flex items-center h-full'>
                                         <div className='flex justify-start flex-row overflow-x-scroll text-dark_green space-x-2 p-4 text-[8px] tablet:text-[10px] laptop:text-[12px] scrollbar-none'>
-                                            <div className='flex flex-row items-center'>
-                                                <p>Банан</p>
-                                                <Button title={<Image src="/remove.svg" width="10" height="10" alt='' />} onClick={() => { }} buttonStyle="px-2 py-1 min-w-10" textStyle="" />
-                                            </div>
-                                            <Button title={<Image src="/add.svg" width="10" height="10" alt='' />} onClick={() => { }} buttonStyle="px-2 py-1 min-w-10" textStyle="" />
+                                            {objects.length > 0 ? (
+                                                objects.map((object, index) => (
+                                                    <div key={index} className='flex flex-row items-center'>
+                                                        <p>{object}</p>
+                                                        <Button title={<Image src="/remove.svg" width="10" height="10" alt='' />} onClick={() => { }} buttonStyle="px-2 py-1 min-w-10" textStyle="" />
+                                                    </div>
+                                                ))
+                                            ) : (
+                                                <p className="text-dark_green text-[8px] tablet:text-[10px] laptop:text-[12px]">Список продуктов пуст.</p>
+                                            )}
+                                            {objects.length > 0 ?
+                                                (<Button title={<Image src="/add.svg" width="10" height="10" alt='' />} onClick={() => { }} buttonStyle="px-2 py-1 min-w-10" textStyle="" />)
+                                                : ""
+                                            }
                                         </div>
                                     </div>
                                 </div>

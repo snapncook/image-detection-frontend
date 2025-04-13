@@ -46,7 +46,7 @@ const Footer = () => {
             </div>
     
             <div className="flex justify-center"> 
-                <p className='text-white font-shantell-sans-regular text-[6px] tablet:text-[8px] laptop:text-[10px] text-center'>©2025. Все права защищены</p>
+                <p className='pb-1 text-white font-shantell-sans-regular text-[6px] tablet:text-[8px] laptop:text-[10px] text-center'>©2025. Все права защищены</p>
             </div>
         </div>
     </div>)
