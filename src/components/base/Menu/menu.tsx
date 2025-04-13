@@ -17,7 +17,7 @@ const MenuComponent: FC<{ data: MenuElementProps[] }> = ({ data }) => {
   };
 
   return (
-    <div className="bg-light_pink w-full h-[10vh] flex flex-row justify-around gap-4 items-center justify-center p-10 text-center">
+    <div className="bg-light_pink w-full h-[10vh] flex flex-row justify-around gap-4 items-center justify-center p-10 text-center" id="main">
       <Image
         src="/logo.svg"
         alt="logo"

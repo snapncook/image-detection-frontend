@@ -26,7 +26,9 @@ const config: Config = {
         ditry_green: '#A8AB9A',
         beige: '#D5BAAB',
         light_beige: '#E2CFC5',
-        dark_beige:'#B48B75'
+        dark_beige:'#B48B75',
+        bright_pink: '#AF6661',
+        orange:'#BC8365'
       },
     },
   },
