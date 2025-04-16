@@ -11,7 +11,9 @@ export default function Home() {
       <MenuComponent data={[{ title: "Инструкция", id: "instructions", style: "text-white font-rubik-mono-one text-xs tablet:text-sm laptop:text-lg" }, { title: "Идеальный ужин", id: "recipe", style: "text-brown_pink font-rubik-mono-one text-xs tablet:text-sm laptop:text-lg" }]} />
       <MainSection />
       <InstructionsSection />
-      <RecipeSection />
+      <RecipeSection   
+      initialObjects={[]} 
+      inititalRecipes={[]} />
 
       <Footer />
     </div>
