@@ -7,7 +7,7 @@ const config: Config = {
     "./src/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
-    
+
     screens: {
       'tablet': '640px',
       'laptop': '1024px',
@@ -19,7 +19,16 @@ const config: Config = {
         foreground: "var(--foreground)",
         brown_pink: '#AD8D73',
         light_pink: '#E2CDC8',
-        dirty_green: '#A8AE9D'
+        dark_red: '#C03E3E',
+        pink: '#E19595',
+        dark_green: "#898B67",
+        light: "#E2CFC5",
+        ditry_green: '#A8AB9A',
+        beige: '#D5BAAB',
+        light_beige: '#E2CFC5',
+        dark_beige:'#B48B75',
+        bright_pink: '#AF6661',
+        orange:'#BC8365'
       },
     },
   },
