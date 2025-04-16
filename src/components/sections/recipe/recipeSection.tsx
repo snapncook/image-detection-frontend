@@ -23,7 +23,7 @@ const RecipeSection: React.FC<RecipeSectionType> = ({ initialObjects = [], initi
 
     const fetchRecipe = async (ingredients: string[]) => {
         try {
-            const response = await fetch('http://localhost:8080/recipes/suggest', {
+            const response = await fetch('http://localhost:8989/recipes/suggest', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -49,7 +49,7 @@ const RecipeSection: React.FC<RecipeSectionType> = ({ initialObjects = [], initi
         const formData = new FormData();
         formData.append("image", selectedFile);
 
-        fetch("http://localhost:8080/detect", {
+        fetch("http://localhost:8989/detect", {
             method: "POST",
             body: formData
         })
