@@ -62,7 +62,7 @@ const RecipeSection: React.FC<RecipeSectionType> = ({ initialObjects = [], initi
             .then(data => {
                 const detectedObjects = data.objects;
                 setObjects(detectedObjects || []);
-                setPreviewUrl(data.annotated_image);
+                setPreviewUrl(`data:image/jpeg;base64,${data.image}`);
                 fetchRecipe(detectedObjects || []);
             })
             .catch(error => {
