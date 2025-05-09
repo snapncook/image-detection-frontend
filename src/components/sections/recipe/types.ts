@@ -5,6 +5,6 @@ export interface RecipeSectionType {
 
 export interface RecipeType{
     title: string;
-    ingredients: string;
+    ingredients: string[];
     steps: string;
 }
